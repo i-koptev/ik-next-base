@@ -1,4 +1,7 @@
 {
+    "frontPage-heading": "Главная страница",
     "title": "Привет, мир!",
-    "variable-example": "Используем переменную {{count}}"
+    "variable-example": "Используем переменную {{count}}",
+    "topbarMenu-about-title": "О Нас",
+    "topbarMenu-contacts-title": "Контакты"
 }

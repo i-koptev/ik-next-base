@@ -1,4 +1,7 @@
 {
+    "frontPage-heading": "Galvenā lapa",
     "title": "Sveika pasaule!",
-    "variable-example": "Izmantojam vars {{count}}"
+    "variable-example": "Izmantojam vars {{count}}",
+    "topbarMenu-about-title": "Par Mums",
+    "topbarMenu-contacts-title": "Kontakti"
 }

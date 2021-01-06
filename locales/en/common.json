@@ -1,4 +1,7 @@
 {
+    "frontPage-heading": "Front Page",
     "title": "Hello world!",
-    "variable-example": "Using a variable {{count}}"
+    "variable-example": "Using a variable {{count}}",
+    "topbarMenu-about-title": "About",
+    "topbarMenu-contacts-title": "Contacts"
 }
