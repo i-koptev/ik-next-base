@@ -1,62 +1,13 @@
-import { useRouter } from "next/router"
-import path from "path"
-import showdown from "showdown"
-
-// import Link from "next/link"
-import Link from "../components/Link"
-import useTranslation from "next-translate/useTranslation"
-
-import Container from "@material-ui/core/Container"
-import Typography from "@material-ui/core/Typography"
-import Box from "@material-ui/core/Box"
-
+import MainLayout from "../layouts/Main"
+import { FrontPageView } from "../views"
 import { productsData } from "../data"
 
-import Head from "next/head"
-import styles from "../styles/Home.module.css"
-
-export default function IndexPage({ products }) {
-    const router = useRouter()
-    const { t, lang } = useTranslation("common")
-    const converter = new showdown.Converter()
+export default function IndexPage(props) {
+    const { products } = props
     return (
-        // <Container maxWidth="md">
-            <Box my={4}>
-                <div>
-                    <Head>
-                        <title>Create Next App</title>
-                        <link rel="icon" href="/favicon.ico" />
-                    </Head>
-
-                    <main>
-                        <Typography variant="h4" component="h1" gutterBottom>
-                            {t("title")}
-                        </Typography>
-
-                        <h6>{t("variable-example", { count: "asd" })}</h6>
-                        {products.map((product) => (
-                        <div key={product.id}>
-                                <Link
-                                    href={path.join(process.cwd(), product.id)}
-                                    color="secondary"
-                                >
-                                    <h3>{product.name}</h3>
-                                </Link>
-                                <div
-                                    dangerouslySetInnerHTML={{
-                                        __html: converter.makeHtml(
-                                            product.description
-                                        ),
-                                    }}
-                                />
-                            </div>
-                        ))}
-                        {/* <pre>{JSON.stringify(router, null, 2)}</pre> */}
-                        <pre>{JSON.stringify(products, null, 2)}</pre>
-                    </main>
-                </div>
-            </Box>
-        // </Container>
+        <MainLayout>
+            <FrontPageView products={products} />
+        </MainLayout>
     )
 }
 
