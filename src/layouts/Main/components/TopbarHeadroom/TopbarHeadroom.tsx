@@ -33,6 +33,11 @@ const useStyles = makeStyles((theme) => ({
     },
     signOutButton: {
         marginLeft: theme.spacing(1),
+        backgroundColor: "tomato",
+    },
+    notificationButton: {
+        marginLeft: theme.spacing(1),
+        backgroundColor: "tomato",
     },
     mainNavigationLink: {
         transition: "color 200ms linear",
@@ -204,7 +209,10 @@ const TopbarHeadroom = (props) => {
                             ))}
 
                         <Hidden mdDown>
-                            <IconButton color="inherit">
+                            <IconButton
+                                className={classes.notificationButton}
+                                color="inherit"
+                            >
                                 <Badge
                                     // badgeContent={notifications.length}
                                     badgeContent={7}
