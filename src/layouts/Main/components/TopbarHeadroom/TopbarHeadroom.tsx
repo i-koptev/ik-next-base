@@ -174,7 +174,7 @@ const TopbarHeadroom = (props) => {
                                     key={`key-${menuItem.slug}`}
                                     naked
                                     className={classes.mainNavigationLink}
-                                    // activeClassName={classes.active}
+                                    activeClassName={classes.active}
                                     href={
                                         menuItem.slug === "/"
                                             ? menuItem.slug
