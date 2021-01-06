@@ -1,12 +1,13 @@
-import React from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
+
+import MainLayout from "../../layouts/Main"
 
 import { getAllPostSlugs, getPostData } from "../../lib/posts"
 
 const Post = ({ postData }) => {
     return (
-        <div>
+        <MainLayout>
             <Head>
                 <title>{postData.title}</title>
             </Head>
@@ -15,7 +16,7 @@ const Post = ({ postData }) => {
             <p>{postData.slug}</p>
             <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
             {/* <pre>{JSON.stringify(postData, null, 2)}</pre> */}
-        </div>
+        </MainLayout>
     )
 }
 

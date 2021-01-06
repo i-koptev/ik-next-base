@@ -1,11 +1,13 @@
 import { productsData } from "../data"
 
+import MainLayout from "../layouts/Main"
+
 const Product = ({ product }) => {
     return (
-        <div>
+        <MainLayout>
             <h3>Product</h3>
             <pre>{JSON.stringify(product, null, 2)}</pre>
-        </div>
+        </MainLayout>
     )
 }
 
