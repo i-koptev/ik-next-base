@@ -9,12 +9,14 @@
     },
     "dependencies": {
         "@material-ui/core": "^4.11.2",
+        "@material-ui/icons": "^4.11.2",
         "clsx": "^1.1.1",
         "gray-matter": "^4.0.2",
         "next": "10.0.3",
         "next-translate": "^1.0.0",
         "react": "17.0.1",
         "react-dom": "17.0.1",
+        "react-headroom": "^3.1.0",
         "remark": "^13.0.0",
         "remark-html": "^13.0.1",
         "showdown": "^1.9.1"

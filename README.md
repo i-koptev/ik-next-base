@@ -82,3 +82,13 @@ $ touch tsconfig.json
 $ yarn add --dev typescript @types/node @types/react @types/react-dom clsx
 
 ```
+
+```bash
+$ yarn add @material-ui/icons
+```
+
+Solved yarn network problems
+
+```bash
+$ yarn add @material-ui/icons --network-timeout 1000000
+```
