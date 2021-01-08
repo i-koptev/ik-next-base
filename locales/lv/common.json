@@ -3,5 +3,9 @@
     "title": "Sveika pasaule!",
     "variable-example": "Izmantojam vars {{count}}",
     "topbarMenu-about-title": "Par Mums",
-    "topbarMenu-contacts-title": "Kontakti"
+    "topbarMenu-contacts-title": "Kontakti",
+    "topbarMenu-services-title": "Servisi",
+    "topbarMenu-services-subTitle-programming": "Programēšana",
+    "topbarMenu-services-subTitle-design": "Dizains",
+    "topbarMenu-services-subTitle-development": "Izstrāde"
 }

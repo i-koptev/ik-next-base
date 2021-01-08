@@ -3,5 +3,9 @@
     "title": "Привет, мир!",
     "variable-example": "Используем переменную {{count}}",
     "topbarMenu-about-title": "О Нас",
-    "topbarMenu-contacts-title": "Контакты"
+    "topbarMenu-contacts-title": "Контакты",
+    "topbarMenu-services-title": "Услуги",
+    "topbarMenu-services-subTitle-programming": "Программирование",
+    "topbarMenu-services-subTitle-design": "Дизайн",
+    "topbarMenu-services-subTitle-development": "Разработка"
 }
