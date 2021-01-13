@@ -9,8 +9,7 @@ import Fab from "@material-ui/core/Fab"
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp"
 import Zoom from "@material-ui/core/Zoom"
 
-// import { Sidebar, Sidebar2, Topbar, Footer } from "./components"
-import { TopbarHeadroom } from "./components"
+import { Sidebar, TopbarHeadroom } from "./components"
 // import { Sidebar, TopbarHeadroom, Footer } from "./components"
 // import SEO from "./Seo" TODO
 
@@ -25,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
         height: "100%",
     },
     shiftContent: {
-        paddingLeft: 240,
+        paddingLeft: 290,
     },
     content: {
         height: "100%",
@@ -98,34 +97,40 @@ const Main = (props) => {
 
     const [openSidebar, setOpenSidebar] = useState(false)
 
-    const handleSidebarOpen = () => {
-        setOpenSidebar(true)
-    }
+    const toggleSidebar = (open: boolean) => (
+        event: React.KeyboardEvent | React.MouseEvent
+    ) => {
+        if (
+            event &&
+            event.type === "keydown" &&
+            ((event as React.KeyboardEvent).key === "Tab" ||
+                (event as React.KeyboardEvent).key === "Shift")
+        ) {
+            return
+        }
 
-    const handleSidebarClose = () => {
-        setOpenSidebar(false)
+        setOpenSidebar(open)
     }
 
     // const shouldOpenSidebar = isDesktop ? true : openSidebar //comment to show sidebar on Desktop
-    const shouldOpenSidebar = openSidebar //uncomment to show sidebar on Desktop
+    const shouldOpenSidebar = openSidebar //comment to show sidebar on Desktop
 
     return (
         <div
             className={clsx(
                 {
-                    // [classes.shiftContent]: isDesktop, //uncomment to show sidebar on Desktop
+                    //[classes.shiftContent]: isDesktop, //uncomment when showing sidebar on Desktop to shift content
                 },
                 classes.rootHeight
             )}
         >
             <div id="back-to-top-anchor" />
-            <TopbarHeadroom onSidebarOpen={handleSidebarOpen} />
-            {/* <Sidebar
-                onClose={handleSidebarClose}
+            <TopbarHeadroom toggleSidebar={toggleSidebar} />
+            <Sidebar
+                toggleSidebar={toggleSidebar}
                 open={shouldOpenSidebar}
                 variant={isDesktop ? "persistent" : "temporary"}
-                lang={lang}
-            /> */}
+            />
             {/* <Container
                 maxWidth={theme.siteContainer.maxWidth}
                 component="main"

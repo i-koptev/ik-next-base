@@ -253,6 +253,7 @@ const TwoDimentionalMenu = (props) => {
                             {({ TransitionProps, placement }) => (
                                 <Grow
                                     {...TransitionProps}
+                                    timeout={100}
                                     style={{
                                         transformOrigin:
                                             placement === "bottom"

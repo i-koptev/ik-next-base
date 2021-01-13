@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const TopbarHeadroom = (props) => {
-    const { className, onSidebarOpen, ...rest } = props
+    const { className, toggleSidebar, ...rest } = props
 
     const classes = useStyles()
     const theme = useTheme()
@@ -157,15 +157,15 @@ const TopbarHeadroom = (props) => {
                                 <InputIcon />
                             </IconButton>
                         </Hidden>
-                        <Hidden lgUp>
-                            <IconButton
-                                style={{ paddingRight: 0 }}
-                                color="inherit"
-                                onClick={onSidebarOpen}
-                            >
-                                <MenuIcon className={classes.burger} />
-                            </IconButton>
-                        </Hidden>
+                        {/* <Hidden lgUp> */}
+                        <IconButton
+                            style={{ paddingRight: 0 }}
+                            color="inherit"
+                            onClick={toggleSidebar(true)}
+                        >
+                            <MenuIcon className={classes.burger} />
+                        </IconButton>
+                        {/* </Hidden> */}
                     </Toolbar>
                 </Container>
             </AppBar>
