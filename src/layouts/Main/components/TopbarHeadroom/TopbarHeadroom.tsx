@@ -12,10 +12,13 @@ import MenuIcon from "@material-ui/icons/Menu"
 import NotificationsIcon from "@material-ui/icons/NotificationsOutlined"
 import InputIcon from "@material-ui/icons/Input"
 
-import Menu from "@material-ui/core/Menu"
-import MenuItem from "@material-ui/core/MenuItem"
-
 import Link from "../../../../components/Link"
+
+import TwoDimentionalMenu from "./components/TwoDimentionalMenu"
+
+import cmsdata from "../../../../cms"
+
+const { nodes: menuItems } = cmsdata.data.menuItems
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,61 +45,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(1),
         backgroundColor: "tomato",
     },
-    mainNavigationLink: {
-        transition: "color 200ms linear",
-        textDecoration: "none",
-        // textTransform: "uppercase",
-        textTransform: "capitalize",
-        marginRight: "1rem",
-        color: theme.layouts.Main.Topbar.mainNavigationLinkColor,
-        fontWeight: 400,
-        letterSpacing: "0.15em",
-        "&::after": {
-            content: '""',
-            width: "100%",
-            height: "1px",
-            margin: "0 auto",
-            backgroundColor:
-                theme.layouts.Main.Topbar.mainNavigationLinkActiveColor,
-            display: "block",
-            // margin-bottom: .3rem;
-            opacity: "0",
-            transitionDuration: "500ms",
-            transitionProperty: "opacity",
-        },
-        "&:hover": {
-            color: theme.layouts.Main.Topbar.mainNavigationLinkHoverColor,
-            "&::after": {
-                opacity: "0.5",
-            },
-        },
-        "&$active": {
-            color: theme.layouts.Main.Topbar.mainNavigationLinkActiveColor,
-            "&:hover": {
-                cursor: "default",
-                // color:
-                //     theme.layouts.Main.Topbar
-                //         .mainNavigationLinkActiveHoverColor,
-                "&::after": {
-                    opacity: "1",
-                },
-            },
-            "&::after": {
-                content: '""',
-                width: "100%",
-                height: "1px",
-                margin: "0 auto",
-                backgroundColor:
-                    theme.layouts.Main.Topbar.mainNavigationLinkActiveColor,
-                display: "block",
-                // margin-bottom: .3rem;
-                opacity: "1",
-                transitionDuration: "500ms",
-                transitionProperty: "opacity",
-            },
-        },
-    },
-    active: {},
+
     langSwitcherButton: {
         color: theme.layouts.Main.Topbar.langSwitcherButtonColor,
         "&:hover": {
@@ -132,20 +81,6 @@ const useStyles = makeStyles((theme) => ({
         color: theme.layouts.Main.Topbar.burgerColor,
         marginRight: "0.9rem",
     },
-    menu: {
-        backgroundColor: "tomato",
-        color: "white",
-        borderRadius: 0,
-    },
-    menuItem: {
-        opacity: "0.7",
-        "&:hover": {
-            backgroundColor: "transparent",
-            // color: "yellow",
-            opacity: "1",
-            // ...theme.typography.tab
-        },
-    },
 }))
 
 const TopbarHeadroom = (props) => {
@@ -154,35 +89,10 @@ const TopbarHeadroom = (props) => {
     const classes = useStyles()
     const theme = useTheme()
     const router = useRouter()
-    const menuItems = [
-        { slug: "/contacts" },
-        { slug: "/about" },
-        {
-            slug: "/services",
-            subItems: [
-                { slug: "/programming" },
-                { slug: "/design" },
-                { slug: "/development" },
-            ],
-        },
-    ]
-    // const [notifications] = useState([])
 
-    const [unfixed, setUnfixed] = useState()
+    const [notifications, setNotifications] = useState(23)
+
     const { t, lang } = useTranslation("common")
-
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-    const [open, setOpen] = React.useState<boolean>(false)
-
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget)
-        setOpen(true)
-    }
-
-    const handleClose = (e) => {
-        setAnchorEl(null)
-        setOpen(false)
-    }
 
     return (
         <Headroom
@@ -210,106 +120,8 @@ const TopbarHeadroom = (props) => {
                         </Link>
                         <div className={classes.flexGrow} />
                         <Hidden mdDown>
-                            {menuItems.slice(0, 4).map((menuItem) =>
-                                !menuItem.subItems ? (
-                                    <Link
-                                        key={`key-${menuItem.slug}`}
-                                        naked
-                                        className={classes.mainNavigationLink}
-                                        activeClassName={classes.active}
-                                        href={
-                                            menuItem.slug === "/"
-                                                ? menuItem.slug
-                                                : `/${menuItem.slug.replace(
-                                                      /\//g,
-                                                      ""
-                                                  )}/`
-                                        }
-                                    >
-                                        {t(
-                                            `topbarMenu-${menuItem.slug.replace(
-                                                /\//g,
-                                                ""
-                                            )}-title`
-                                        )}
-                                    </Link>
-                                ) : (
-                                    <>
-                                        <Link
-                                            aria-owns={
-                                                anchorEl
-                                                    ? "simple-menu"
-                                                    : undefined
-                                            }
-                                            aria-haspopup={
-                                                anchorEl ? "true" : undefined
-                                            }
-                                            onMouseOver={(e) => handleClick(e)}
-                                            style={{ color: "lime" }}
-                                            key={`key-${menuItem.slug}`}
-                                            naked
-                                            className={
-                                                classes.mainNavigationLink
-                                            }
-                                            activeClassName={classes.active}
-                                            href={
-                                                menuItem.slug === "/"
-                                                    ? menuItem.slug
-                                                    : `/${menuItem.slug.replace(
-                                                          /\//g,
-                                                          ""
-                                                      )}/`
-                                            }
-                                        >
-                                            {t(
-                                                `topbarMenu-${menuItem.slug.replace(
-                                                    /\//g,
-                                                    ""
-                                                )}-title`
-                                            )}
-                                        </Link>
-                                        <Menu
-                                            id="simple-menu"
-                                            anchorEl={anchorEl}
-                                            open={open}
-                                            onClose={handleClose}
-                                            classes={{ paper: classes.menu }}
-                                            MenuListProps={{
-                                                onMouseLeave: handleClose,
-                                            }}
-                                            elevation={0}
-                                        >
-                                            {menuItem.subItems.map(
-                                                (subItem) => (
-                                                    <MenuItem
-                                                        key={`key-${subItem.slug}`}
-                                                        onClick={handleClose}
-                                                        component={Link}
-                                                        naked
-                                                        href={subItem.slug}
-                                                        classes={{
-                                                            root:
-                                                                classes.menuItem,
-                                                        }}
-                                                    >
-                                                        {t(
-                                                            `topbarMenu-${menuItem.slug.replace(
-                                                                /\//g,
-                                                                ""
-                                                            )}-subTitle-${subItem.slug.replace(
-                                                                /\//g,
-                                                                ""
-                                                            )}`
-                                                        )}
-                                                    </MenuItem>
-                                                )
-                                            )}
-                                        </Menu>
-                                    </>
-                                )
-                            )}
+                            <TwoDimentionalMenu menuItems={menuItems} />
                         </Hidden>
-
                         {router.locales
                             .filter((locale) => locale !== lang)
                             .map((locale) => (
@@ -323,7 +135,6 @@ const TopbarHeadroom = (props) => {
                                     {locale.toUpperCase()}
                                 </Button>
                             ))}
-
                         <Hidden mdDown>
                             <IconButton
                                 className={classes.notificationButton}
@@ -331,7 +142,7 @@ const TopbarHeadroom = (props) => {
                             >
                                 <Badge
                                     // badgeContent={notifications.length}
-                                    badgeContent={7}
+                                    badgeContent={notifications}
                                     // color="primary"
                                     color="error"
                                     // variant="dot"
@@ -362,10 +173,4 @@ const TopbarHeadroom = (props) => {
     )
 }
 
-// TopbarHeadroom.propTypes = {
-//     className: PropTypes.string,
-//     onSidebarOpen: PropTypes.func,
-// }
-
-// export default injectIntl(TopbarHeadroom)
 export default TopbarHeadroom
