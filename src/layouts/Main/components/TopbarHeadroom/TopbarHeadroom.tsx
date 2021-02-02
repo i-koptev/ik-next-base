@@ -18,7 +18,7 @@ import TwoDimentionalMenu from "./components/TwoDimentionalMenu"
 
 import cmsdata from "../../../../cms"
 
-const { nodes: menuItems } = cmsdata.data.menuItems
+const { nodes: menuItems } = cmsdata.data.menus.topbarMenu.menuItems
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 700,
         textTransform: "uppercase",
         letterSpacing: "0.1rem",
+        // marginBottom: "-5.818px",
+        padding: "0",
     },
     flexGrow: {
         flexGrow: 1,
@@ -56,6 +58,11 @@ const useStyles = makeStyles((theme) => ({
         "& .MuiButton-label": {
             letterSpacing: "0.02rem",
         },
+        transition: "color 500ms linear",
+    },
+    langSwitcherButtonPinned: {
+        color: "white",
+        transition: "color 100ms linear",
     },
     toolbar: {
         minHeight: "56px",
@@ -77,9 +84,18 @@ const useStyles = makeStyles((theme) => ({
             borderBottom: theme.mainNavigationPinnedBorderBottom,
         },
     },
-    burger: {
+    drawerIcon: {
         color: theme.layouts.Main.Topbar.burgerColor,
         marginRight: "0.9rem",
+        marginLeft: "0.9rem",
+        height: "28px",
+        width: "28px",
+    },
+    drawerIconContainer: {
+        paddingRight: 0,
+        "&:hover": {
+            backgroundColor: "transparent",
+        },
     },
 }))
 
@@ -94,11 +110,22 @@ const TopbarHeadroom = (props) => {
 
     const { t, lang } = useTranslation("common")
 
+    const [pinned, setPinned] = useState(false)
+
     return (
         <Headroom
-            onPin={() => console.log("pinned")}
-            onUnpin={() => console.log("unpinned")}
-            onUnfix={() => console.log("unfixed")}
+            onPin={() => {
+                setPinned(true)
+                console.log("Pinned: ", pinned)
+            }}
+            onUnpin={() => {
+                // setPinned(false)
+                console.log("Unpinned: ", pinned)
+            }}
+            onUnfix={() => {
+                setPinned(false)
+                console.log("unfixed")
+            }}
             wrapperStyle={{ height: "100px" }}
             variant="header"
             className={classes.headroom}
@@ -115,8 +142,15 @@ const TopbarHeadroom = (props) => {
                         classes={{ root: classes.toolbar }}
                     >
                         <Link href="/" className={classes.logo}>
-                            {/* <img alt="Logo" src="/images/logos/logo--white.svg" /> */}
-                            IK-Base
+                            <img
+                                src="/logo-iks.svg"
+                                alt=""
+                                style={{
+                                    height: "64px",
+                                    width: "64px",
+                                }}
+                            />
+                            {/* IK-Base */}
                         </Link>
                         <div className={classes.flexGrow} />
                         <Hidden mdDown>
@@ -127,7 +161,12 @@ const TopbarHeadroom = (props) => {
                             .map((locale) => (
                                 <Button
                                     key={locale}
-                                    className={classes.langSwitcherButton}
+                                    className={clsx(
+                                        {
+                                            [classes.langSwitcherButtonPinned]: pinned,
+                                        },
+                                        classes.langSwitcherButton
+                                    )}
                                     href={router.asPath}
                                     locale={locale}
                                     component={Link}
@@ -135,7 +174,7 @@ const TopbarHeadroom = (props) => {
                                     {locale.toUpperCase()}
                                 </Button>
                             ))}
-                        <Hidden mdDown>
+                        {/* <Hidden mdDown>
                             <IconButton
                                 className={classes.notificationButton}
                                 color="inherit"
@@ -156,14 +195,14 @@ const TopbarHeadroom = (props) => {
                             >
                                 <InputIcon />
                             </IconButton>
-                        </Hidden>
+                        </Hidden> */}
                         {/* <Hidden lgUp> */}
                         <IconButton
-                            style={{ paddingRight: 0 }}
+                            className={classes.drawerIconContainer}
                             color="inherit"
                             onClick={toggleSidebar(true)}
                         >
-                            <MenuIcon className={classes.burger} />
+                            <MenuIcon className={classes.drawerIcon} />
                         </IconButton>
                         {/* </Hidden> */}
                     </Toolbar>

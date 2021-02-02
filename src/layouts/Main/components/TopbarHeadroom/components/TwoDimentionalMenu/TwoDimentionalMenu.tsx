@@ -14,6 +14,8 @@ import MenuList from "@material-ui/core/MenuList"
 
 import Link from "../../../../../../components/Link"
 
+import { flatListToHierarchical } from "../../../../../../lib/functions"
+
 const useStyles = makeStyles((theme) => ({
     mainNavigationLink: {
         transition: "color 200ms linear",
@@ -130,31 +132,6 @@ const TwoDimentionalMenu = (props) => {
             setOpen(false)
         }
     }
-
-    //** ==========================================================================
-    //* Jason Bahl's function --> https://docs.wpgraphql.com/getting-started/menus/
-    //** ==========================================================================
-
-    const flatListToHierarchical = (
-        data = [],
-        { idKey = "key", parentKey = "parentId", childrenKey = "children" } = {}
-    ) => {
-        const tree = []
-        const childrenOf = {}
-        data.forEach((item) => {
-            const newItem = { ...item }
-            const { [idKey]: id, [parentKey]: parentId = 0 } = newItem
-            childrenOf[id] = childrenOf[id] || []
-            newItem[childrenKey] = childrenOf[id]
-            parentId
-                ? (childrenOf[parentId] = childrenOf[parentId] || []).push(
-                      newItem
-                  )
-                : tree.push(newItem)
-        })
-        return tree
-    }
-    // ** ===================================================================
 
     // return focus to the button when we transitioned from !open -> open
     // const prevOpen = React.useRef(open)
