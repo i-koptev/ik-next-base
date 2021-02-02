@@ -1,4 +1,5 @@
 {
+    "sidebarMenuTitle": "Sidebar menu",
     "frontPage-heading": "Front Page",
     "title": "Hello world!",
     "variable-example": "Using a variable {{count}}",

@@ -1,4 +1,5 @@
 {
+    "sidebarMenuTitle": "Боковое меню",
     "frontPage-heading": "Главная страница",
     "title": "Привет, мир!",
     "variable-example": "Используем переменную {{count}}",
