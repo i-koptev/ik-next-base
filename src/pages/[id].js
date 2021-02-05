@@ -1,4 +1,4 @@
-import { productsData } from "../data"
+import { productsData } from "../cms"
 
 import MainLayout from "../layouts/Main"
 
@@ -26,7 +26,7 @@ export async function getStaticPaths({ locales }) {
         })),
     ]
 
-    console.log(paths)
+    // console.log(paths)
 
     return {
         paths: paths,

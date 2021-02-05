@@ -1,6 +1,6 @@
 import MainLayout from "../layouts/Main"
 import { FrontPageView } from "../views"
-import { productsData } from "../data"
+import { productsData } from "../cms"
 
 export default function IndexPage(props) {
     const { products } = props
