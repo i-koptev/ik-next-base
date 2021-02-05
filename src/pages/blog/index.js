@@ -10,7 +10,7 @@ function Blog({ allPostsData }) {
                     <li key={slug}>
                         {title}
                         <br />
-                        <Link href={`blog/${slug}`}>
+                        <Link href={`/blog/${slug}`}>
                             <a>{slug}</a>
                         </Link>
                         <br />
