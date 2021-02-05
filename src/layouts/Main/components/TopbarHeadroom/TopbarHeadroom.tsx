@@ -141,17 +141,19 @@ const TopbarHeadroom = (props) => {
                         disableGutters
                         classes={{ root: classes.toolbar }}
                     >
-                        <Link href="/" className={classes.logo}>
-                            <img
-                                src="/logo-iks.svg"
-                                alt=""
-                                style={{
-                                    height: "64px",
-                                    width: "64px",
-                                }}
-                            />
-                            {/* IK-Base */}
-                        </Link>
+                        {/* <Link href="/" className={classes.logo}> */}
+                        <img
+                            onClick={() => router.push(`/`)}
+                            src="/logo-iks.svg"
+                            alt=""
+                            style={{
+                                height: "64px",
+                                width: "64px",
+                                cursor: "pointer",
+                            }}
+                        />
+                        {/* IK-Base */}
+                        {/* </Link> */}
                         <div className={classes.flexGrow} />
                         <Hidden mdDown>
                             <TwoDimentionalMenu menuItems={menuItems} />
