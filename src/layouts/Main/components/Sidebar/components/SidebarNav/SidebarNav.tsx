@@ -1,3 +1,4 @@
+import React from "react"
 import Link from "../../../../../../components/Link"
 import clsx from "clsx"
 import useTranslation from "next-translate/useTranslation"
@@ -102,14 +103,13 @@ const SidebarNav = (props) => {
     }
     const renderSubMenu = (menuItem, index, level, hasSubMenu) => {
         return (
-            <>
+            <React.Fragment key={menuItem.key}>
                 <ListItem
                     component={Link}
                     href={menuItem.url}
                     naked
                     button
                     divider
-                    key={menuItem.key}
                     classes={{ divider: classes.drawerDivider }}
                     className={classes.drawerItem}
                     style={{ paddingLeft: `${level * 20 + 15}px` }}
@@ -135,7 +135,7 @@ const SidebarNav = (props) => {
                         return renderMenuItem(item, index, level)
                     }))
                 }
-            </>
+            </React.Fragment>
         )
     }
 
