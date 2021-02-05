@@ -1,3 +1,4 @@
+export { productsData } from "./productsData"
 export default {
     data: {
         menus: {
